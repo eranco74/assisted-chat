@@ -1,0 +1,21 @@
+# Core dependencies
+llama-stack-client
+llama-stack
+python-frontmatter
+markdownify
+pathlib
+PyYAML
+faiss-cpu
+
+# OpenShift Lightspeed RAG Content model dependencies
+# Clones and uses the actual model files from the repository
+# From: https://github.com/openshift/lightspeed-rag-content/tree/main/embeddings_model
+sentence-transformers
+torch
+transformers
+safetensors
+
+# System dependencies (ensure these are installed):
+# - git (for cloning the repository)
+# - curl (for health checks)
+# - Python 3.8+ 

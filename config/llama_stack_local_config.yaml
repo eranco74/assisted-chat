@@ -1,0 +1,43 @@
+version: 2
+image_name: local-rag
+apis:
+- vector_io
+- inference
+- telemetry
+providers:
+  inference:
+  - provider_id: sentence-transformers
+    provider_type: inline::sentence-transformers
+    config: {}
+  vector_io:
+  - provider_id: faiss
+    provider_type: inline::faiss
+    config:
+      kvstore:
+        type: sqlite
+        namespace: null
+        db_path: ${env.SQLITE_STORE_DIR:=/tmp/.llama/distributions/local-rag}/faiss_store.db
+  telemetry:
+  - provider_id: meta-reference
+    provider_type: inline::meta-reference
+    config:
+      service_name: "local-rag-stack"
+      sinks: console,sqlite
+      sqlite_db_path: ${env.SQLITE_STORE_DIR:=/tmp/.llama/distributions/local-rag}/trace_store.db
+metadata_store:
+  type: sqlite
+  db_path: ${env.SQLITE_STORE_DIR:=/tmp/.llama/distributions/local-rag}/registry.db
+models:
+- metadata: {}
+  model_id: sentence-transformers/all-mpnet-base-v2
+  provider_id: sentence-transformers
+  provider_model_id: sentence-transformers/all-mpnet-base-v2
+  model_type: embedding
+shields: []
+vector_dbs: []
+datasets: []
+scoring_fns: []
+benchmarks: []
+tool_groups: []
+server:
+  port: 8321 
